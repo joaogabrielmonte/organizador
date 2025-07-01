@@ -124,70 +124,69 @@ switch ($action) {
         require_once __DIR__ . '/../views/controle_usuarios_form.php';
         break;
 
-    case 'update':
-        // Ação para ATUALIZAR um usuário existente (POST do formulário)
-        $idPost = $_POST['id'] ?? null;
-        $login = trim($_POST['login'] ?? '');
-        $nome = trim($_POST['nome'] ?? '');
-        $email = trim($_POST['email'] ?? '');
-        $ativo = isset($_POST['ativo']) ? true : false;
-        $senha = $_POST['senha'] ?? ''; // Nova senha, se preenchida
+   case 'update':
+    $idPost = (int)($_POST['id'] ?? 0);  // Cast para int
+    $login = trim($_POST['login'] ?? '');
+    $nome = trim($_POST['nome'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $ativo = isset($_POST['ativo']) ? true : false;
+    $senha = $_POST['senha'] ?? ''; // Nova senha, se preenchida
 
-        if ($idPost === null || empty($login)) {
-            $erro = "Dados inválidos para atualização.";
-        } else {
-            $usuarioOriginal = null;
-            foreach ($usuarios as &$u) {
-                if ($u['id'] === $idPost) {
-                    $usuarioOriginal = $u; // Guarda o usuário original para a senha
-                    $u['login'] = $login;
-                    $u['nome'] = $nome;
-                    $u['email'] = $email;
-                    $u['ativo'] = $ativo;
-                    if (!empty($senha)) { // Só atualiza a senha se um novo valor for fornecido
-                        $u['senha'] = password_hash($senha, PASSWORD_DEFAULT);
-                    }
-                    break;
+    if ($idPost === 0 || empty($login)) {
+        $erro = "Dados inválidos para atualização.";
+    } else {
+        $usuarioOriginal = null;
+        foreach ($usuarios as &$u) {
+            if ((int)$u['id'] === $idPost) {
+                $usuarioOriginal = $u; // Guarda o usuário original para a senha
+                $u['login'] = $login;
+                $u['nome'] = $nome;
+                $u['email'] = $email;
+                $u['ativo'] = $ativo;
+                if (!empty($senha)) { // Só atualiza a senha se um novo valor for fornecido
+                    $u['senha'] = password_hash($senha, PASSWORD_DEFAULT);
                 }
+                break;
             }
-            unset($u); // Quebra a referência para evitar problemas
+        }
+        unset($u); // Quebra a referência para evitar problemas
 
-            // Verifica se o login está duplicado (apenas se for diferente do original)
-            $loginExiste = false;
-            foreach ($usuarios as $u) {
-                if ($u['id'] !== $idPost && $u['login'] === $login) {
-                    $loginExiste = true;
-                    break;
-                }
-            }
-
-            if ($loginExiste) {
-                $erro = "Este login já está em uso por outro usuário.";
-            } elseif ($usuarioOriginal) {
-                 if (salvarUsuarios($usuarios)) {
-                    $_SESSION['flash'] = ['type' => 'success', 'msg' => 'Usuário atualizado com sucesso.'];
-                    header('Location: controle_usuarios.php');
-                    exit;
-                } else {
-                    $erro = "Erro ao salvar as alterações.";
-                }
-            } else {
-                $erro = "Usuário não encontrado para atualização.";
+        // Verifica se o login está duplicado (ignorando o próprio usuário, case-insensitive)
+        $loginExiste = false;
+        foreach ($usuarios as $u) {
+            if ((int)$u['id'] !== $idPost && strtolower($u['login']) === strtolower($login)) {
+                $loginExiste = true;
+                break;
             }
         }
 
-        // Se houver erro, preenche $usuarioParaForm com os dados enviados para manter o formulário preenchido
-        $usuarioParaForm = [
-            'id' => $idPost,
-            'login' => $login,
-            'nome' => $nome,
-            'email' => $email,
-            'ativo' => $ativo,
-            'senha' => '', // Nunca exiba a senha
-        ];
-        $editando = true; // Permanece no modo de edição
-        require_once __DIR__ . '/../views/controle_usuarios_form.php'; // Reexibe o formulário com erro
-        break;
+        if ($loginExiste) {
+            $erro = "Este login já está em uso por outro usuário.";
+        } elseif ($usuarioOriginal) {
+            if (salvarUsuarios($usuarios)) {
+                $_SESSION['flash'] = ['type' => 'success', 'msg' => 'Usuário atualizado com sucesso.'];
+                header('Location: controle_usuarios.php');
+                exit;
+            } else {
+                $erro = "Erro ao salvar as alterações.";
+            }
+        } else {
+            $erro = "Usuário não encontrado para atualização.";
+        }
+    }
+
+    // Se houver erro, preenche $usuarioParaForm com os dados enviados para manter o formulário preenchido
+    $usuarioParaForm = [
+        'id' => $idPost,
+        'login' => $login,
+        'nome' => $nome,
+        'email' => $email,
+        'ativo' => $ativo,
+        'senha' => '', // Nunca exiba a senha
+    ];
+    $editando = true; // Permanece no modo de edição
+    require_once __DIR__ . '/../views/controle_usuarios_form.php'; // Reexibe o formulário com erro
+    break;
 
     case 'delete':
         // Ação para EXCLUIR um usuário
