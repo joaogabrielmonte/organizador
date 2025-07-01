@@ -1,0 +1,137 @@
+    body {
+      /* Matching login's body background and text color */
+      background: <?= $tema === 'dark' ? '#000000' : '#f0f2f5' ?>; /* Absolute black for dark mode */
+      color: <?= $tema === 'dark' ? '#E6EDF3' : '#222' ?>; /* Light text for dark mode */
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif; /* Keep your existing font family */
+    }
+
+    /* Sidebar style */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0; /* occupies full height */
+      width: 16rem; /* 256px */
+      padding: 1.5rem;
+      /* Matching login's card background and subtle red border/shadow */
+      background-color: <?= $tema === 'dark' ? 'rgba(18, 18, 18, 0.9)' : '#e5e7eb' ?>;
+      border: <?= $tema === 'dark' ? '1px solid rgba(60, 0, 0, 0.6)' : 'none' ?>; /* Subtle red border */
+      box-shadow: <?= $tema === 'dark' ? '0 12px 30px rgba(255, 0, 0, 0.15), 0 4px 10px rgba(255, 0, 0, 0.1)' : '2px 0 8px rgb(0 0 0 / 0.1)' ?>; /* Subtle red shadow */
+      backdrop-filter: blur(8px); /* Blur effect */
+      -webkit-backdrop-filter: blur(8px);
+      overflow-x: visible;
+      transition: width 0.3s ease-in-out;
+      z-index: 40;
+    }
+
+    /* Sidebar collapsed */
+    .sidebar.collapsed {
+      width: 5.5rem; /* larger space for button */
+    }
+
+    /* Menu title flex with space */
+    .sidebar h2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      color: <?= $tema === 'dark' ? '#E6EDF3' : 'black' ?>; /* Use light text color */
+      user-select: none;
+    }
+
+    /* Hide texts when collapsed */
+    .sidebar.collapsed .menu-text {
+      display: none;
+    }
+
+    /* Centered links and details when collapsed */
+    .sidebar.collapsed nav a,
+    .sidebar.collapsed details summary,
+    .sidebar.collapsed details div a {
+      justify-content: center;
+    }
+    .sidebar.collapsed details div {
+      margin-left: 0;
+    }
+
+    /* Hamburger button inside sidebar top right */
+    #toggleSidebar {
+      background: transparent; /* no background */
+      color: <?= $tema === 'dark' ? '#E6EDF3' : 'black' ?>; /* Use light text color */
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      border-radius: 9999px;
+      font-size: 1.5rem;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+      transition: color 0.3s;
+      z-index: 50;
+      position: relative;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    #toggleSidebar:hover {
+      color: <?= $tema === 'dark' ? '#E50000' : '#b91c1c' ?>; /* Red hover color */
+    }
+
+    /* Main content adjustment */
+    .main {
+      transition: margin-left 0.3s ease-in-out;
+      margin-left: 16rem;
+      min-height: 100vh;
+      background-color: <?= $tema === 'dark' ? '#0A0A0A' : '#fff' ?>; /* Darker background for main content area */
+    }
+
+    /* Main content shifted when collapsed */
+    .sidebar.collapsed ~ .main {
+      margin-left: 5.5rem;
+    }
+
+    /* Header with padding not to touch sidebar */
+    header.header-adjust {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      transition: margin-left 0.3s ease-in-out;
+      /* Matching login's input background/border */
+      background-color: <?= $tema === 'dark' ? '#0A0A0A' : '#f3f4f6' ?>; /* Darker background */
+      border-bottom: <?= $tema === 'dark' ? '1px solid #330000' : 'none' ?>; /* Subtle red border */
+    }
+    /* Adjust header when sidebar is collapsed */
+    .sidebar.collapsed ~ .main header.header-adjust {
+      margin-left: 0;
+    }
+
+    /* Main content welcome text */
+    h2.main-welcome-heading {
+      color: <?= $tema === 'dark' ? '#E50000' : '#b91c1c' ?>; /* Primary red for welcome text */
+      text-shadow: <?= $tema === 'dark' ? '0 0 10px rgba(229, 0, 0, 0.5)' : 'none' ?>; /* Glow for dark mode */
+    }
+    h2.main-welcome-heading .underline {
+      text-decoration-color: <?= $tema === 'dark' ? '#FF3333' : '#e31a1a' ?>; /* Lighter red for underline */
+    }
+
+    /* Animated line below welcome text */
+    div.animate-line {
+      background-color: <?= $tema === 'dark' ? '#E50000' : '#b91c1c' ?>; /* Red color for the line */
+    }
+
+    /* Menu item hover color */
+    nav a.hover\:text-rose-400:hover,
+    details summary.hover\:text-rose-400:hover {
+        color: <?= $tema === 'dark' ? '#E50000' : '#b91c1c' ?>; /* Primary red for menu item hover */
+    }
+
+
+    @keyframes slide {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+    .animate-slide {
+      animation: slide 2s linear infinite;
+    }

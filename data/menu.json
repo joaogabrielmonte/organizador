@@ -1,0 +1,34 @@
+[
+  {
+  "titulo": "Controle de Projetos",
+  "icone": "fas fa-clipboard-list",
+  "submenu": [
+    {
+      "titulo": "Painel de Lista",
+      "link": "painel.php",
+      "icone": "fas fa-list"
+    },
+    {
+      "titulo": "Painel Kanban",
+      "link": "kanban.php",
+      "icone": "fas fa-columns"
+    }
+  ]
+}
+,
+  {
+    "titulo": "Controle de Usuários",
+    "link": "controle_usuarios.php",
+    "icone": "fas fa-users-cog"
+  },
+  {
+    "titulo": "Mudar Tema",
+    "link": "../assets/tema.php",
+    "icone": "fas fa-moon"
+  },
+  {
+    "titulo": "Sair",
+    "link": "logout.php",
+    "icone": "fas fa-sign-out-alt"
+  }
+]

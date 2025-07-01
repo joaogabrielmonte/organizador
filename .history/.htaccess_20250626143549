@@ -1,0 +1,16 @@
+# .htaccess (na raiz do projeto)
+
+# Ativa o módulo de reescrita
+RewriteEngine On
+
+# Define a base do diretório (ajuste se seu projeto não estiver na raiz do domínio)
+# Ex: Se seu site é http://localhost/organizador/, use RewriteBase /organizador/
+# Se seu site é http://localhost/, use RewriteBase /
+RewriteBase /
+
+# Evita loop de redirecionamento para arquivos e diretórios existentes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redireciona tudo para index.php
+RewriteRule ^(.*)$ index.php [QSA,L]

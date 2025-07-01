@@ -1,0 +1,86 @@
+        body {
+            background: #000000; /* Preto absoluto */
+            font-family: 'Oxanium', sans-serif; /* Fonte tecnológica */
+            color: #E6EDF3; /* Cor do texto padrão */
+        }
+        #tsparticles {
+            position: fixed;
+            z-index: 0;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+        }
+        .login-card {
+            position: relative;
+            z-index: 1;
+            background: rgba(18, 18, 18, 0.9); /* Fundo quase preto translúcido */
+            border-radius: 1.5rem; /* Bordas mais arredondadas */
+            border: 1px solid rgba(60, 0, 0, 0.6); /* Borda vermelha escura sutil */
+            box-shadow: 0 12px 30px rgba(255, 0, 0, 0.15), 0 4px 10px rgba(255, 0, 0, 0.1); /* Sombra vermelha sutil */
+            padding: 3rem 2.5rem;
+            width: 100%;
+            max-width: 420px;
+            backdrop-filter: blur(8px); /* Efeito de desfoque no fundo */
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .input-custom {
+            background: #0A0A0A; /* Fundo do input mais escuro */
+            border: 1px solid #330000; /* Borda padrão do input vermelha escura */
+            border-radius: 0.75rem;
+            padding: 0.9rem 1.2rem;
+            color: #E6EDF3;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+        }
+        .input-custom::placeholder {
+            color: #8B949E; /* Cinza mais escuro para placeholder */
+        }
+        .input-custom:focus {
+            outline: none;
+            border-color: #E50000; /* Vermelho vibrante de foco */
+            background: #1A0000; /* Levemente mais claro no foco */
+            box-shadow: 0 0 10px rgba(229, 0, 0, 0.5); /* Sombra vermelha no foco */
+        }
+        .btn-login {
+            background: linear-gradient(90deg, #E50000 0%, #FF3333 100%); /* Gradiente vermelho para o botão */
+            padding: 0.9rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 2rem;
+            font-size: 1.15rem;
+            user-select: none;
+            color: #FFFFFF; /* Texto branco no botão para alto contraste */
+            box-shadow: 0 6px 15px rgba(229, 0, 0, 0.3); /* Sombra vermelha */
+        }
+        .btn-login:hover {
+            background: linear-gradient(90deg, #FF3333 0%, #E50000 100%); /* Inverte o gradiente no hover */
+            box-shadow: 0 8px 20px rgba(255, 51, 51, 0.4);
+            transform: translateY(-2px);
+        }
+        .error-msg {
+            background: #CC0000; /* Vermelho escuro para erro */
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #FFFFFF;
+            box-shadow: 0 0 8px rgba(204, 0, 0, 0.6);
+        }
+        .footer-text {
+            font-size: 0.8rem;
+            color: #8B949E;
+            text-align: center;
+            margin-top: 2.5rem;
+            user-select: none;
+        }
+        .heading-gradient {
+            background: linear-gradient(90deg, #FF3333, #E50000); /* Gradiente vermelho para o título */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }

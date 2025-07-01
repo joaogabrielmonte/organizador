@@ -1,0 +1,345 @@
+    body {
+      font-family: 'Oxanium', sans-serif; /* Fonte tecnológica */
+      background: <?= $tema === 'dark' ? '#000000' : '#f0f2f5' ?>; /* Preto absoluto para dark mode */
+      color: <?= $tema === 'dark' ? '#E6EDF3' : '#222' ?>; /* Cor do texto padrão */
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Common Button Styles (matching painel) */
+    .btn-common {
+        background-color: <?= $tema === 'dark' ? '#E50000' : '#e2e8f0' ?>; /* Vermelho forte no dark mode */
+        color: <?= $tema === 'dark' ? '#FFFFFF' : '#4b5563' ?>; /* Texto branco para alto contraste no dark mode */
+        border: 1px solid <?= $tema === 'dark' ? '#FF3333' : '#d1d5db' ?>; /* Borda um pouco mais clara que o fundo do botão */
+        box-shadow: <?= $tema === 'dark' ? '0 4px 10px rgba(255, 0, 0, 0.4)' : '0 2px 5px rgba(0,0,0,0.1)' ?>; /* Sombra mais visível e vermelha no dark mode */
+        transition: all 0.3s ease;
+        padding: 0.75rem 1.2rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        text-shadow: <?= $tema === 'dark' ? '0 0 5px rgba(255, 255, 255, 0.5)' : 'none' ?>; /* Sutil brilho no texto no dark mode */
+    }
+    .btn-common:hover {
+        background: <?= $tema === 'dark' ? 'linear-gradient(90deg, #FF3333 0%, #E50000 100%)' : '#cbd5e1' ?>; /* Gradiente no hover do dark mode */
+        color: <?= $tema === 'dark' ? '#FFFFFF' : '#333' ?>; /* Texto branco no hover do dark mode */
+        box-shadow: <?= $tema === 'dark' ? '0 6px 15px rgba(255, 51, 51, 0.5)' : '0 4px 8px rgba(0,0,0,0.2)' ?>; /* Sombra mais intensa no hover */
+        transform: translateY(-1px);
+    }
+
+    /* Kanban Column Styling */
+    .kanban-column {
+      background: <?= $tema === 'dark' ? 'rgba(18, 18, 18, 0.9)' : 'rgba(255, 255, 255, 0.9)' ?>; /* Matching login/painel backgrounds */
+      backdrop-filter: blur(8px); /* Increased blur for consistency */
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 1.5rem; /* More rounded corners */
+      padding: 1.5rem;
+      box-shadow: <?= $tema === 'dark' ? '0 12px 30px rgba(255, 0, 0, 0.15), 0 4px 10px rgba(255, 0, 0, 0.1)' : '0 8px 25px rgba(0, 0, 0, 0.1)' ?>; /* Red glow shadow for dark */
+      display: flex;
+      flex-direction: column;
+      min-height: 300px;
+      transition: all 0.3s ease;
+      border: <?= $tema === 'dark' ? '1px solid rgba(60, 0, 0, 0.6)' : '1px solid #e2e8f0' ?>; /* Red border for dark */
+    }
+
+    .kanban-column.drag-over {
+      background-color: <?= $tema === 'dark' ? 'rgba(255, 51, 51, 0.15)' : '#fee2e2' ?>; /* Lighter red for drag-over in dark */
+      box-shadow: <?= $tema === 'dark' ? '0 0 40px 8px rgba(255, 51, 51, 0.7)' : '0 0 40px 5px #f87171aa' ?>; /* More intense red glow */
+      border: 2px dashed <?= $tema === 'dark' ? '#E50000' : '#f87171' ?>; /* Solid red dashed border */
+    }
+
+    /* Task Styling */
+    .task {
+      cursor: grab;
+      background: <?= $tema === 'dark' ? '#0A0A0A' : '#ffffff' ?>; /* Darker background for tasks in dark mode */
+      border: 1px solid <?= $tema === 'dark' ? '#330000' : '#e2e8f0' ?>; /* Matching input border */
+      box-shadow: 0 1.5px 5px rgb(0 0 0 / 0.1);
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      color: <?= $tema === 'dark' ? '#E6EDF3' : '#333' ?>;
+    }
+
+    .task:hover {
+      transform: scale(1.03);
+      box-shadow: <?= $tema === 'dark' ? '0 6px 12px rgba(255, 0, 0, 0.4)' : '0 6px 12px rgb(248 113 113 / 0.4)' ?>; /* Red glow on hover */
+      background-color: <?= $tema === 'dark' ? 'rgba(26, 0, 0, 0.8)' : '#fff0f3' ?>; /* Dark red background on hover */
+    }
+
+    .task.dragging {
+      opacity: 0.6;
+      cursor: grabbing;
+      box-shadow: 0 0 25px 5px rgba(255, 51, 51, 0.7); /* More intense drag glow */
+      transform: scale(0.95);
+    }
+
+    /* Delete Button */
+    .delete-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: #CC0000; /* Stronger red for delete */
+      font-weight: bold;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.2s ease;
+      user-select: none;
+      line-height: 1;
+    }
+    .task:hover .delete-btn {
+      opacity: 1;
+    }
+
+    /* Column Headers (h2) */
+    h2 {
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      user-select: none;
+      /* Gradient text for titles */
+      background: linear-gradient(90deg, #FF3333, #E50000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: <?= $tema === 'dark' ? '0 0 10px rgba(229, 0, 0, 0.3)' : 'none' ?>; /* Subtle red glow for dark */
+    }
+
+    h2 i {
+      animation-duration: 2.5s;
+      animation-iteration-count: infinite;
+    }
+    .slow-spin { animation: slow-spin 4s linear infinite; }
+    .fa-spin { animation: fa-spin 1.5s linear infinite; }
+    .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+    @keyframes slow-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+    /* Layout Grid */
+    .kanban-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* New Task Form */
+    form.nova-tarefa-form {
+      margin-top: auto;
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    form.nova-tarefa-form input[type="text"] {
+      flex-grow: 1;
+      padding: 0.9rem 1.2rem; /* Matching login input padding */
+      border-radius: 0.75rem; /* More rounded */
+      border: 1px solid <?= $tema === 'dark' ? '#330000' : '#cbd5e1' ?>; /* Matching login input border */
+      background: <?= $tema === 'dark' ? '#0A0A0A' : '#f8fafc' ?>; /* Matching login input background */
+      color: <?= $tema === 'dark' ? '#E6EDF3' : '#333' ?>; /* Matching login input text color */
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: inset 0 0 5px rgb(0 0 0 / 0.1);
+      transition: all 0.3s ease;
+    }
+
+    form.nova-tarefa-form input[type="text"]::placeholder {
+      color: <?= $tema === 'dark' ? '#8B949E' : '#a0aec0' ?>; /* Matching login input placeholder */
+      opacity: 0.8;
+    }
+
+    form.nova-tarefa-form input[type="text"]:focus {
+      outline: none;
+      border-color: <?= $tema === 'dark' ? '#E50000' : '#93c5fd' ?>; /* Matching login input focus border */
+      background: <?= $tema === 'dark' ? '#1A0000' : '#ffffff' ?>; /* Matching login input focus background */
+      box-shadow: <?= $tema === 'dark' ? '0 0 10px rgba(229, 0, 0, 0.5)' : '0 0 10px rgba(147,197,253,0.5)' ?>; /* Matching login input focus shadow */
+    }
+
+    form.nova-tarefa-form button {
+      background: linear-gradient(90deg, #E50000 0%, #FF3333 100%); /* Matching primary button gradient */
+      color: white;
+      font-weight: 700;
+      padding: 0.75rem 1rem; /* Adjusted padding */
+      border-radius: 0.5rem;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      user-select: none;
+      box-shadow: 0 4px 10px rgba(229, 0, 0, 0.3);
+    }
+
+    form.nova-tarefa-form button:hover {
+      background: linear-gradient(90deg, #FF3333 0%, #E50000 100%); /* Invert gradient on hover */
+      box-shadow: 0 6px 15px rgba(255, 51, 51, 0.4);
+      transform: translateY(-1px);
+    }
+
+    form.nova-tarefa-form button i {
+      animation: pulse 1.6s infinite;
+    }
+
+    /* Header for Kanban (matching dashboard) */
+    .kanban-header {
+      background: rgba(18, 18, 18, 0.9); /* Fundo quase preto translúcido */
+      border-bottom: 1px solid rgba(60, 0, 0, 0.6); /* Borda vermelha escura sutil */
+      box-shadow: 0 4px 15px rgba(255, 0, 0, 0.1); /* Sombra vermelha sutil */
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 0.75rem; /* Bordas arredondadas */
+      padding: 1.5rem 2rem; /* Padding generoso */
+      margin-bottom: 2.5rem; /* More space below header */
+      color: #E6EDF3;
+    }
+    .kanban-header h1 {
+        background: linear-gradient(90deg, #FF3333, #E50000);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700;
+        text-shadow: 0 0 10px rgba(229, 0, 0, 0.3);
+    }
+    /* Link "Voltar para o Dashboard" and "Toggle Theme" button in header */
+    .kanban-header .btn-common {
+        background-color: <?= $tema === 'dark' ? '#E50000' : '#e2e8f0' ?>; /* Strong red for dark, light gray for light */
+        color: <?= $tema === 'dark' ? '#FFFFFF' : '#4b5563' ?>;
+        border: 1px solid <?= $tema === 'dark' ? '#FF3333' : '#d1d5db' ?>;
+        box-shadow: <?= $tema === 'dark' ? '0 4px 10px rgba(255, 0, 0, 0.4)' : '0 2px 5px rgba(0,0,0,0.1)' ?>;
+        transition: all 0.3s ease;
+        padding: 0.75rem 1.2rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        text-shadow: <?= $tema === 'dark' ? '0 0 5px rgba(255, 255, 255, 0.5)' : 'none' ?>;
+    }
+    .kanban-header .btn-common:hover {
+        background: <?= $tema === 'dark' ? 'linear-gradient(90deg, #FF3333 0%, #E50000 100%)' : '#cbd5e1' ?>;
+        color: <?= $tema === 'dark' ? '#FFFFFF' : '#333' ?>;
+        box-shadow: <?= $tema === 'dark' ? '0 6px 15px rgba(255, 51, 51, 0.5)' : '0 4px 8px rgba(0,0,0,0.2)' ?>;
+        transform: translateY(-1px);
+    }
+    
+    /* Light mode adjustments */
+    body.bg-gray-100 { 
+        background-color: #f0f2f5;
+        color: #333;
+    }
+    body.bg-gray-100 .kanban-column,
+    body.bg-gray-100 .task,
+    body.bg-gray-100 form.nova-tarefa-form input[type="text"] {
+        background-color: #ffffff;
+        border-color: #e2e8f0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        color: #333;
+    }
+    body.bg-gray-100 .kanban-column.drag-over {
+        background-color: #fee2e2;
+        border-color: #f87171;
+        box-shadow: 0 0 40px 5px rgba(248, 113, 113, 0.7);
+    }
+    body.bg-gray-100 .task:hover {
+        background-color: #fff0f3;
+        box-shadow: 0 6px 12px rgb(248 113 113 / 0.4);
+    }
+    body.bg-gray-100 h2 {
+        background: linear-gradient(90deg, #ef4444, #b91c1c);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: none;
+    }
+    body.bg-gray-100 form.nova-tarefa-form input[type="text"]::placeholder {
+        color: #a0aec0;
+    }
+    body.bg-gray-100 form.nova-tarefa-form input[type="text"]:focus {
+        background-color: #ffffff;
+        border-color: #93c5fd;
+        box-shadow: 0 0 10px rgba(147,197,253,0.5);
+    }
+    body.bg-gray-100 form.nova-tarefa-form button {
+        background: linear-gradient(90deg, #b91c1c 0%, #ef4444 100%);
+        box-shadow: 0 6px 15px rgba(239, 68, 68, 0.3);
+    }
+    body.bg-gray-100 form.nova-tarefa-form button:hover {
+        background: linear-gradient(90deg, #ef4444 0%, #b91c1c 100%);
+    }
+    body.bg-gray-100 .kanban-header {
+        background-color: #ffffff;
+        border-color: #e2e8f0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        color: #333;
+    }
+    body.bg-gray-100 .kanban-header h1 {
+        background: linear-gradient(90deg, #ef4444, #b91c1c);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: none;
+    }
+    
+    /* Message Feedback (Redesigned) */
+    #msg-feedback {
+        position: fixed;
+        bottom: 20px; /* Appear from bottom */
+        left: 50%; /* Center horizontally */
+        transform: translateX(-50%) translateY(20px); /* Start below center, invisible */
+        color: #E6EDF3; /* Light text color */
+        padding: 1rem 2rem;
+        border-radius: 0.75rem; /* Rounded corners */
+        font-weight: 600;
+        font-size: 1rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        z-index: 10000; /* Ensure it's on top */
+        max-width: 380px; /* Slightly wider */
+        text-align: center;
+        border: 1px solid; /* Border for subtle definition */
+        font-family: 'Oxanium', sans-serif; /* Consistent font */
+        display: flex; /* Use flex for icon and text */
+        align-items: center;
+        gap: 0.75rem; /* Space between icon and text */
+    }
+
+    #msg-feedback.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0); /* Slide up to visible */
+    }
+
+    /* Message Types (Colors with borders) */
+    #msg-feedback.success {
+        background-color: rgba(22, 163, 74, 0.9); /* Green translucent */
+        border-color: rgba(34, 197, 94, 0.8); /* Lighter green border */
+        box-shadow: 0 8px 20px rgba(22, 163, 74, 0.4);
+    }
+
+    #msg-feedback.warning {
+        background-color: rgba(217, 119, 6, 0.9); /* Amber translucent */
+        border-color: rgba(253, 186, 116, 0.8); /* Lighter amber border */
+        box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4);
+    }
+
+    #msg-feedback.error {
+        background-color: rgba(204, 0, 0, 0.9); /* Strong red translucent */
+        border-color: rgba(255, 51, 51, 0.8); /* Lighter red border */
+        box-shadow: 0 8px 20px rgba(204, 0, 0, 0.4);
+    }
+    
+    /* Icon in message */
+    #msg-feedback i {
+        font-size: 1.25rem;
+    }
+
+    /* Header specific styles (from original code, just renamed class) */
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .icon-spin-on-hover { display: inline-block; transition: transform 0.3s ease; }
+    a:hover .icon-spin-on-hover { animation: spin 1s linear infinite; }

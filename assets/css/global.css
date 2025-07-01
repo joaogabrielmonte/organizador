@@ -1,0 +1,522 @@
+/* assets/css/global.css */
+
+/* --- Base Styles & Fonts --- */
+body {
+    font-family: 'Oxanium', sans-serif; /* Fonte tecnológica */
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Evita barra horizontal */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave para tema */
+}
+
+/* Partículas TSParticles */
+#tsparticles {
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Conteúdo principal com z-index (containers gerais) */
+.content, .container, .login-card, .kanban-grid {
+    position: relative;
+    z-index: 1;
+}
+.container { /* Estilo geral para containers de páginas como Controle de Usuários */
+    max-width: 900px; /* Largura padrão dos containers */
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+
+/* --- Dark Mode Defaults (Aplicação Geral) --- */
+body {
+    background: #000000; /* Preto absoluto */
+    color: #E6EDF3; /* Cor do texto padrão claro */
+}
+
+/* Backgrounds com Blur e Bordas/Sombras (elementos principais como cards, headers, forms) */
+.login-card,
+.kanban-column,
+.header-painel,
+.form-painel,
+.list-item-painel,
+tbody tr { /* Tabelas também recebem este estilo base */
+    background: rgba(18, 18, 18, 0.9); /* Fundo quase preto translúcido */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(60, 0, 0, 0.6);
+    box-shadow: 0 12px 30px rgba(255, 0, 0, 0.15), 0 4px 10px rgba(255, 0, 0, 0.1);
+    border-radius: 1.5rem; /* Bordas arredondadas padrão */
+}
+.header-painel { /* Header tem bottom border e arredondamento diferente */
+    border-bottom: 1px solid rgba(60, 0, 0, 0.6);
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.1);
+    border-radius: 0.75rem; /* Menos arredondado para header */
+}
+
+/* Títulos H1, H2 e Gradientes de Texto */
+h1, h2, .heading-gradient {
+    background: linear-gradient(90deg, #FF3333, #E50000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(229, 0, 0, 0.3);
+}
+
+/* Títulos secundários (e.g., "Olá, Usuário!") */
+.text-title-secondary {
+    color: #E6EDF3;
+    font-weight: 600;
+}
+.text-title-secondary .username {
+    color: #FF3333; /* Destaque vermelho */
+}
+
+/* --- Input Fields (Estilo Consistente) --- */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="time"],
+.input-custom,
+.input-painel,
+form.nova-tarefa-form input[type="text"] {
+    background: #0A0A0A;
+    border: 1px solid #330000;
+    border-radius: 0.75rem;
+    padding: 0.9rem 1.2rem;
+    color: #E6EDF3;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 1rem;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra interna sutil */
+}
+
+input::placeholder,
+.input-custom::placeholder,
+.input-painel::placeholder,
+form.nova-tarefa-form input[type="text"]::placeholder {
+    color: #8B949E;
+}
+
+input:focus,
+.input-custom:focus,
+.input-painel:focus,
+form.nova-tarefa-form input[type="text"]:focus {
+    outline: none;
+    border-color: #E50000;
+    background: #1A0000;
+    box-shadow: 0 0 10px rgba(229, 0, 0, 0.5);
+}
+
+/* --- Primary Buttons (Add, Login, Verificar) --- */
+.btn-primary-gradient {
+    background: linear-gradient(90deg, #E50000 0%, #FF3333 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 6px 15px rgba(229, 0, 0, 0.3);
+    border: none; /* Remove default button border */
+    display: inline-flex; /* Para ícones */
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.btn-primary-gradient:hover {
+    background: linear-gradient(90deg, #FF3333 0%, #E50000 100%);
+    box-shadow: 0 8px 20px rgba(255, 51, 51, 0.4);
+    transform: translateY(-2px);
+}
+/* Tamanhos e paddings específicos */
+.btn-login { /* Botão principal do Login */
+    padding: 0.9rem;
+    border-radius: 0.75rem;
+    font-size: 1.15rem;
+    margin-top: 2rem;
+    width: 100%;
+}
+.btn-add-form { /* Botão "Adicionar Rotina" no Painel e "Adicionar Tarefa" no Kanban */
+    padding: 0.9rem 1.5rem;
+    border-radius: 0.75rem;
+    font-size: 1.1rem;
+    width: 100%;
+}
+.btn-add-comment { /* Botão "Adicionar" de Comentários no Painel */
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 10px rgba(229, 0, 0, 0.3); /* Sombra menor */
+}
+.btn-add-comment:hover { /* Hover para botão de comentário */
+    box-shadow: 0 6px 15px rgba(255, 51, 51, 0.4);
+    transform: translateY(-1px);
+}
+
+
+/* --- Secondary Buttons (Dashboard, Modo, Sair, Cancelar, Novo Usuário) --- */
+.btn-secondary {
+    background-color: #E50000; /* Vermelho forte */
+    color: #FFFFFF;
+    border: 1px solid #FF3333;
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    padding: 0.75rem 1.2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    text-decoration: none; /* Remover sublinhado de links */
+    display: inline-flex; /* Para alinhamento de ícones */
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+.btn-secondary:hover {
+    background: linear-gradient(90deg, #FF3333 0%, #E50000 100%);
+    color: #FFFFFF;
+    box-shadow: 0 6px 15px rgba(255, 51, 51, 0.5);
+    transform: translateY(-1px);
+}
+
+/* --- List Items (Tasks, Table Rows) --- */
+.task, .list-item-painel { /* Tasks do Kanban e itens de lista do Painel */
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    color: #E6EDF3;
+}
+.task:hover { /* Hover para tarefas no Kanban */
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(255, 0, 0, 0.4);
+    background-color: rgba(26, 0, 0, 0.8);
+}
+tbody tr:hover { /* Hover para linhas de tabela em Controle de Usuários */
+    background-color: rgba(26, 0, 0, 0.8);
+}
+
+/* --- Status Badges (Ativo/Inativo) --- */
+.status-badge {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.85rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    color: white;
+}
+.status-badge.true { background-color: #22c55e; } /* Verde */
+.status-badge.false { background-color: #ef4444; } /* Vermelho */
+
+/* --- Action Links (Edit/Delete) --- */
+.action-link {
+    margin-right: 1rem;
+    color: #FF3333; /* Vermelho vibrante */
+    font-size: 1.1rem;
+    transition: color 0.2s ease;
+}
+.action-link:hover {
+    color: #E50000; /* Vermelho mais escuro no hover */
+}
+/* Cores específicas para Marcar/Desmarcar e Excluir */
+.link-mark-done { color: #22c55e; } /* Mark done (Verde) */
+.link-mark-done:hover { color: #16a34a; }
+.link-delete { color: #CC0000; } /* Delete (Vermelho) */
+.link-delete:hover { color: #B30000; }
+
+
+/* --- Comments Section (Painel) --- */
+.comments-container {
+    background-color: #0A0A0A;
+    border: 1px solid #330000;
+}
+.comments-summary {
+    color: #FF3333;
+    font-weight: 600;
+}
+
+/* --- Kanban Specifics --- */
+.kanban-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.25rem;
+}
+.kanban-column.drag-over {
+    background-color: rgba(255, 51, 51, 0.15); /* Lighter red for drag-over */
+    box-shadow: 0 0 40px 8px rgba(255, 51, 51, 0.7);
+    border: 2px dashed #E50000;
+}
+
+
+/* --- Header Styles (Shared by Painel, Kanban, Dashboard) --- */
+.main-header {
+    background: rgba(18, 18, 18, 0.9);
+    border-bottom: 1px solid rgba(60, 0, 0, 0.6);
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 0.75rem;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2.5rem;
+    color: #E6EDF3;
+    display: flex;
+    flex-direction: column; /* Stack by default on mobile */
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem; /* Space between elements in header */
+}
+@media (min-width: 768px) { /* On medium screens and up */
+    .main-header {
+        flex-direction: row; /* Row layout on desktop */
+    }
+}
+.main-header h1 {
+    background: linear-gradient(90deg, #FF3333, #E50000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(229, 0, 0, 0.3);
+    font-size: 1.75rem; /* Standardized size for header H1 */
+    margin-bottom: 0; /* No margin bottom on header H1 */
+}
+.main-header .header-actions { /* Div que envolve os botões do header */
+    display: flex;
+    flex-wrap: wrap; /* Botões quebram linha */
+    justify-content: center; /* Centraliza em telas pequenas */
+    gap: 0.75rem; /* Espaço entre botões */
+}
+.main-header .btn-common { /* Botões dentro do header (Voltar, Modo, Sair) */
+    font-size: 0.9rem; /* Slightly smaller for header buttons */
+    padding: 0.6rem 1rem;
+}
+.main-header .btn-common span { /* Oculta texto em telas muito pequenas */
+    display: none;
+}
+@media (min-width: 640px) { /* sm: breakpoint do Tailwind */
+    .main-header .btn-common span {
+        display: inline; /* Mostra texto a partir de sm */
+    }
+}
+
+/* --- Loader and Animations --- */
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.icon-spin-on-hover { display: inline-block; transition: transform 0.3s ease; }
+a:hover .icon-spin-on-hover { animation: spin 1s linear infinite; }
+
+/* Dashboard Welcome Text & Line */
+@keyframes slide {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+.animate-slide { animation: slide 2s linear infinite; }
+.animate-line { background-color: #E50000; }
+
+/* Kanban Column Icon Animations */
+.slow-spin { animation: slow-spin 4s linear infinite; }
+.fa-spin { animation: fa-spin 1.5s linear infinite; }
+.animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+
+/* --- Message Feedback (Redesigned from Kanban) --- */
+#msg-feedback {
+    position: fixed;
+    bottom: 20px; /* Appear from bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%) translateY(20px); /* Start below center, invisible */
+    color: #E6EDF3; /* Light text color */
+    padding: 1rem 2rem;
+    border-radius: 0.75rem; /* Rounded corners */
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    z-index: 10000; /* Ensure it's on top */
+    max-width: 380px; /* Slightly wider */
+    text-align: center;
+    border: 1px solid; /* Border for subtle definition */
+    font-family: 'Oxanium', sans-serif; /* Consistent font */
+    display: flex; /* Use flex for icon and text */
+    align-items: center;
+    gap: 0.75rem; /* Space between icon and text */
+}
+
+#msg-feedback.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0); /* Slide up to visible */
+}
+
+/* Message Types (Colors with borders) */
+#msg-feedback.success {
+    background-color: rgba(22, 163, 74, 0.9); /* Green translucent */
+    border-color: rgba(34, 197, 94, 0.8); /* Lighter green border */
+    box-shadow: 0 8px 20px rgba(22, 163, 74, 0.4);
+}
+
+#msg-feedback.warning {
+    background-color: rgba(217, 119, 6, 0.9); /* Amber translucent */
+    border-color: rgba(253, 186, 116, 0.8); /* Lighter amber border */
+    box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4);
+}
+
+#msg-feedback.error {
+    background-color: rgba(204, 0, 0, 0.9); /* Strong red translucent */
+    border-color: rgba(255, 51, 51, 0.8); /* Lighter red border */
+    box-shadow: 0 8px 20px rgba(204, 0, 0, 0.4);
+}
+
+/* Icon in message */
+#msg-feedback i {
+    font-size: 1.25rem;
+}
+
+
+/* --- Light Mode Theming (Universal Adjustments) --- */
+body.light-mode { /* This class will be added to the <body> by PHP if $tema === 'light' */
+    background-color: #f0f2f5; /* Light background */
+    color: #222; /* Dark text */
+}
+
+/* Light Mode: Backgrounds with Blur */
+body.light-mode .login-card,
+body.light-mode .kanban-column,
+body.light-mode .header-painel,
+body.light-mode .form-painel,
+body.light-mode .list-item-painel,
+body.light-mode tbody tr { /* Added table rows for light mode */
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Light Mode: Headers H1, H2 */
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode .heading-gradient {
+    background: linear-gradient(90deg, #ef4444, #b91c1c); /* Red gradient for light mode */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none; /* No shadow in light mode */
+}
+
+/* Light Mode: Titles secondary */
+body.light-mode .text-title-secondary {
+    color: #333;
+}
+body.light-mode .text-title-secondary .username {
+    color: #b91c1c; /* Darker red for username in light mode */
+}
+
+/* Light Mode: Input Fields */
+body.light-mode input[type="text"],
+body.light-mode input[type="email"],
+body.light-mode input[type="password"],
+body.light-mode input[type="time"],
+body.light-mode .input-custom,
+body.light-mode .input-painel,
+body.light-mode form.nova-tarefa-form input[type="text"] {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+    color: #333;
+}
+body.light-mode input::placeholder,
+body.light-mode .input-custom::placeholder,
+body.light-mode .input-painel::placeholder,
+body.light-mode form.nova-tarefa-form input[type="text"]::placeholder {
+    color: #a0aec0;
+}
+body.light-mode input:focus,
+body.light-mode .input-custom:focus,
+body.light-mode .input-painel:focus,
+body.light-mode form.nova-tarefa-form input[type="text"]:focus {
+    background-color: #ffffff;
+    border-color: #93c5fd;
+    box-shadow: 0 0 10px rgba(147, 197, 253, 0.5);
+}
+
+/* Light Mode: Primary Buttons */
+body.light-mode .btn-primary-gradient {
+    background: linear-gradient(90deg, #b91c1c 0%, #ef4444 100%);
+    box-shadow: 0 6px 15px rgba(239, 68, 68, 0.3);
+    color: #FFFFFF;
+}
+body.light-mode .btn-primary-gradient:hover {
+    background: linear-gradient(90deg, #ef4444 0%, #b91c1c 100%);
+}
+
+/* Light Mode: Secondary Buttons */
+body.light-mode .btn-secondary {
+    background-color: #e2e8f0;
+    color: #4b5563;
+    border-color: #d1d5db;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+body.light-mode .btn-secondary:hover {
+    background-color: #cbd5e1;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Light Mode: List Item hover */
+body.light-mode tbody tr:hover {
+    background-color: #f3f4f6; /* Lighter hover for tables */
+}
+
+/* Light Mode: Action links */
+body.light-mode .action-link {
+    color: #2563eb;
+}
+body.light-mode .action-link:hover {
+    color: #1d4ed8;
+}
+
+/* Light Mode: Comments */
+body.light-mode .comments-container {
+    background-color: #f8fafc;
+    border-color: #e2e8f0;
+}
+body.light-mode .comments-summary {
+    color: #ef4444;
+}
+
+/* Light Mode: Kanban Specifics */
+body.light-mode .kanban-column.drag-over {
+    background-color: #fee2e2;
+    border-color: #f87171;
+    box-shadow: 0 0 40px 5px rgba(248, 113, 113, 0.7);
+}
+body.light-mode .kanban-header {
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    color: #333;
+}
+body.light-mode .kanban-header h1 {
+    background: linear-gradient(90deg, #ef4444, #b91c1c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+body.light-mode .kanban-header .btn-common {
+    background-color: #e2e8f0;
+    color: #4b5563;
+    border-color: #d1d5db;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+body.light-mode .kanban-header .btn-common:hover {
+    background-color: #cbd5e1;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}

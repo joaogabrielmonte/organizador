@@ -1,0 +1,34 @@
+[
+    {
+        "id": 2,
+        "login": "joao",
+        "nome": "Joao",
+        "email": "joao@exemplo.com",
+        "ativo": true,
+        "senha": "1234"
+    },
+    {
+        "id": 3,
+        "login": "admin",
+        "nome": "admin",
+        "email": "admin@exemplo.com",
+        "ativo": true,
+        "senha": "$2y$10$DpUvwax\/ElQ3g2cGr2ADWeOCzGuaIVlS90xzo9dyN\/3tDCXySXHvu"
+    },
+    {
+        "id": 4,
+        "login": "jotinha",
+        "nome": "dsdd",
+        "email": "ddf@gmail.com",
+        "ativo": true,
+        "senha": "$2y$10$ZbFdFeIFldrlH4suUZSQpOnDVyVt\/qj9S\/8lHlzuRKkwmbKFamR5C"
+    },
+    {
+        "id": 5,
+        "login": "admins",
+        "nome": "admins",
+        "email": "admins@gmail.com",
+        "ativo": true,
+        "senha": "$2y$10$HHekinl3YvoXnj2E9HThieO8kOzYEvVeOAk.8fYdzQ.8VdO1PJdYS"
+    }
+]
